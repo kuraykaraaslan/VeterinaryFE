@@ -6,7 +6,7 @@ import Animal from "@/types/Animal";
 import Customer from "@/types/Customer";
 
 
-const CreateAnimalPage = (params : { preSelectedCustomerID: string }) => {
+const CreateAnimalPage = () => {
 
     const [name, setName] = React.useState("");
     const [species, setSpecies] = React.useState("");
@@ -115,9 +115,6 @@ const CreateAnimalPage = (params : { preSelectedCustomerID: string }) => {
 
     React.useEffect(() => {
         getCustomers();
-        if (params.preSelectedCustomerID) {
-            setCustomerID(params.preSelectedCustomerID);
-        }
     }, []);
 
     return (
