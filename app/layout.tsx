@@ -15,9 +15,6 @@ export default function RootLayout({
 }>) {
   return (
     <html >
-      <head>
-      <meta http-equiv="Content-Security-Policy" content="connect-src 'self' http://46.101.128.193:8080"></meta>
-      </head>
       <body className="antialiased font-sans min-h-screen flex flex-col flex-1">
         <Navbar />
         <div className="container mx-auto p-4 h-full bg-base-100 flex flex-col flex-1">{children}</div>
