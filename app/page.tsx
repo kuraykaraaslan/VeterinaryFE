@@ -17,6 +17,7 @@ export default function Home() {
         <a href="/animals" className="btn btn-primary text-xl w-64">Animals</a>
         <a href="/vaccination" className="btn btn-primary text-xl w-64">Vaccination</a>
         <a href="/workdays" className="btn btn-primary text-xl w-64">WorkDays</a>
+        <a href="/reports" className="btn btn-primary text-xl w-64">Reports</a>
       </div>
     </div>
   </>);
