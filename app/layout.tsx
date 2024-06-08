@@ -16,6 +16,7 @@ export default function RootLayout({
   return (
     <html >
       <body className="antialiased font-sans min-h-screen flex flex-col flex-1">
+      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         <Navbar />
         <div className="container mx-auto p-4 h-full bg-base-100 flex flex-col flex-1">{children}</div>
        </body>
