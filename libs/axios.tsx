@@ -3,7 +3,7 @@
 import axios from "axios";
 
 export const axiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: "http://46.101.128.193:8080/api/v1",
 });
 
 export default axiosInstance;
