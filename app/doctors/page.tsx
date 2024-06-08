@@ -27,7 +27,7 @@ const DoctorsPage = () => {
         });
     }, [pageNumber, pageSize]);
 
-    function handleDelete(id: number) {
+    function handleDelete(id: string) {
         // confirm dialog
         confirm("Are you sure you want to delete this doctor?") &&
         axiosInstance.delete(`/doctors/${id}`)
@@ -96,7 +96,8 @@ const DoctorsPage = () => {
                                         <a href={`/doctors/${doctor.id}`} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                             Edit
                                         </a>
-                                        <button onClick={() => handleDelete(doctor.id)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">
+                                        <button onClick={() => handleDelete(doctor.id as string
+                                        )} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">
                                             Delete
                                         </button>
                                     </div>

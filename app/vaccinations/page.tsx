@@ -1,13 +1,11 @@
 'use client';
 import React , {useState} from "react";
 import axiosInstance from "@/libs/axios";
-import WorkDay from "@/types/WorkDay";
-import Doctor from "@/types/Doctor";
+import Vaccine from "@/types/Vaccine";
+import Animal from "@/types/Animal";
 
-const WorkdaysPage = () => {
-    const [workdays, setWorkdays] = React.useState<WorkDay[]>([]);
-    const [doctors, setDoctors] = React.useState<Doctor[]>([]);
-
+const VaccinationsPage = () => {
+    const [vaccines, setVaccines] = React.useState<Vaccine[]>([]);
     
     const [pageNumber , setPageNumber] = useState(0);
     const [totalPages , setTotalPages] = useState(0);
@@ -15,34 +13,24 @@ const WorkdaysPage = () => {
     const [pageSize , setPageSize] = useState(5);
 
 
+
     React.useEffect(() => {
-        axiosInstance.get("/available-dates" + `?page=${pageNumber}&size=${pageSize}`)
-        .then((workdays) => {
-            setWorkdays(workdays.data.content);
+        axiosInstance.get("/vaccinations" + `?page=${pageNumber}&size=${pageSize}`)
+        .then((vaccines) => {
+            setVaccines(vaccines.data.content);
         })
         .catch((error) => {
             console.log(error);
             alert("An error occurred. Please try again later.");
         });
 
-        axiosInstance.get("/doctors")
-        .then((doctors) => {
-            setDoctors(doctors.data);
-        })
-        .catch((error) => {
-            console.log(error);
-            alert("An error occurred. Please try again later.");
-        });
     }, []);
 
-    function getDoctorName(doctorID: string) {
-        return doctors.find((doctor) => doctor.id === doctorID)?.name;
-    }
-
-    function deleteWorkday(workdayID: string) {
-        axiosInstance.delete(`/workdays/${workdayID}`)
+    
+    function deleteVaccine(vaccineID: string) {
+        axiosInstance.delete(`/vaccinations/${vaccineID}`)
         .then(() => {
-            setWorkdays(workdays.filter((workday) => workday.id !== workdayID));
+            setVaccines(vaccines.filter((vaccine) => vaccine.id !== vaccineID));
         })
         .catch((error) => {
             console.log(error);
@@ -54,11 +42,11 @@ const WorkdaysPage = () => {
     return (
         <div className="container mx-auto h-full flex flex-col">
             <div className="text-3xl font-semibold text-center">
-                <h1>Workdays</h1>
+                <h1>Vaccines</h1>
             </div>
             <div className="flex justify-end">
-                <a href="/workdays/create" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    Add Workday
+                <a href="/vaccinations/create" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Add Vaccine
                 </a>
             </div>
             <div className="flex flex-col mt-4">
@@ -66,30 +54,42 @@ const WorkdaysPage = () => {
                     <thead className="justify-between">
                         <tr className="bg-gray-800">
                             <th className="px-16 py-2">
-                                <span className="text-gray-300">Doctor</span>
+                                <span className="text-gray-300">Name/Code</span>
                             </th>
                             <th className="px-16 py-2">
-                                <span className="text-gray-300">Day</span>
+                                <span className="text-gray-300">Animal</span>
+                            </th>
+                            <th className="px-16 py-2">
+                                <span className="text-gray-300">Protection Start Date</span>
+                            </th>
+                            <th className="px-16 py-2">
+                                <span className="text-gray-300">Protection End Date</span>
                             </th>
                             <th className="px-16 py-2">
                                 <span className="text-gray-300">Actions</span>
                             </th>
                         </tr>
                     </thead>
-                    <tbody className="bg-gray-200">
-                        {workdays.map((workDay) => (
-                            <tr className="bg-white border-4 border-gray-200" key={workDay.id}>
-                                <td>
-                                    <span className="text-center ml-2 font-semibold">{workDay.doctor.name}</span>
+                    <tbody>
+                        {vaccines.map((vaccine) => (
+                            <tr key={vaccine.id} className="border-b border-gray-200 bg-gray-100">
+                                <td className="px-16 py-2">
+                                    {vaccine.name}
                                 </td>
-                                <td>
-                                    <span className="text-center ml-2 font-semibold">{workDay.workDay}</span>
+                                <td className="px-16 py-2">
+                                    {vaccine.animalWithoutCustomer ? vaccine.animalWithoutCustomer.name : ""}
                                 </td>
-                                <td>
-                                    <a href={`/workdays/${workDay.id}`} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                        Details
+                                <td className="px-16 py-2">
+                                    {vaccine.protectionStartDate}
+                                </td>
+                                <td className="px-16 py-2">
+                                    {vaccine.protectionFinishDate}
+                                </td>
+                                <td className="px-16 py-2">
+                                    <a href={`/vaccinations/${vaccine.id}`} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                        Edit
                                     </a>
-                                    <button onClick={() => deleteWorkday(workDay.id as string)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                    <button onClick={() => deleteVaccine(vaccine.id as string)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                                         Delete
                                     </button>
                                 </td>
@@ -130,6 +130,7 @@ const WorkdaysPage = () => {
             </div>
         </div>
     );
+
 }
 
-export default WorkdaysPage;
+export default VaccinationsPage;

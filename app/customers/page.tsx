@@ -98,7 +98,7 @@ const CustomersPage = () => {
                                     <a href={`/customers/${customer.id}/edit`} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-1">
                                         Edit
                                     </a>
-                                    <button onClick={() => handleDelete(customer.id)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-1">
+                                    <button onClick={() => handleDelete(customer.id as string)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-1">
                                         Delete
                                     </button>
                                 </td>

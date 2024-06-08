@@ -17,7 +17,7 @@
 import Doctor from "./Doctor";
 
 interface WorkDay {
-    id : string;
+    id? : string;
     workDay: string;
     doctor: Doctor;
 }

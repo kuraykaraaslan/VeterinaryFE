@@ -1,7 +1,7 @@
 import Customer from "./Customer";
 
 interface Animal {
-    id: string;
+    id?: string;
     name: string;
     species: string;
     breed: string;

@@ -90,7 +90,9 @@ const AnimalsPage = () => {
                                     <a href={`/animals/${animal.id}`} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                         Edit
                                     </a>
-                                    <button onClick={() => handleDelete(animal.id)} className="bg-red-500 hover:bg-red-700 text-white font-bold ml-2 py-2 px-4 rounded">
+                                    <button onClick={() => handleDelete(animal.id as string
+
+                                    )} className="bg-red-500 hover:bg-red-700 text-white font-bold ml-2 py-2 px-4 rounded">
                                         Delete
                                     </button>
                                 </td>
