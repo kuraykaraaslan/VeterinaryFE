@@ -3,7 +3,7 @@
 import axios from "axios";
 
 export const axiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: "https://vet-app-tyyk.onrender.com/api/v1",
 });
 
 export default axiosInstance;
