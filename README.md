@@ -4,6 +4,12 @@
 
 This is a React application for managing a veterinary clinic's operations. The system provides APIs for managing doctors, customers, animals, vaccines, and appointments. The application is developed following a layered architecture pattern, with PostgreSQL as the database and Spring Data JPA for data access. The API endpoints are documented for easy integration and usage.
 
+## Live Demo
+
+The application is deployed on Vercel. You can access the live demo using the link below:
+
+[Live Demo](https://veterinary-psi.vercel.app/)
+
 ## Technologies
 
 [![React](https://img.shields.io/badge/-React-61DAFB?logo=react&logoColor=white)](https://reactjs.org/)
